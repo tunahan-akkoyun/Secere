@@ -1,0 +1,169 @@
+﻿@page
+@model IndexModel
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@inject MyData.Repository.Ihelper<MyClass.Hayvan> hayvan
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+@inject MyData.Repository.Ihelper<MyClass.Cins> cins
+
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__items set-bg" data-setbg="/img/hero-4.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h6>Norveç Orman Kedisi</h6>
+                            <h2>Pamuk</h2>
+                            <br />
+                            <br />
+                            <a href="/Hayvan/Details1/26" class="primary-btn">Şeceresine bak <span class="arrow_right"></span></a>
+                            <div class="hero__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__items set-bg" data-setbg="/img/kopek.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h6>Golden</h6>
+                            <h2>Bulut</h2>
+                            <br/>
+                            <br />
+                            <a href="/Hayvan/Details1/38" class="primary-btn">Şeceresine bak <span class="arrow_right"></span></a>
+                            <div class="hero__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic">
+                        <img src="~/img/kus.jpg" alt="" width="470" height="400" style="border-radius: 20px 20px 20px 20px;">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Ben Manken</h2>
+                        <a href="Hayvan/Details1/42">Profilime bak</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="banner__item banner__item--middle">
+                    <div class="banner__item__pic">
+                        <img src="~/img/at.jpg" alt="" width="470" height="400" style="border-radius: 20px 20px 20px 20px;">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Ben Rüzgar</h2>
+                        <a href="/Hayvan/Details1/45">Profilime bak</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="banner__item banner__item--last">
+                    <div class="banner__item__pic">
+                        <img src="~/img/kedi.jpg" alt="" width="470" height="400" style="border-radius: 20px 0 0 20px;">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Ben Minnoş</h2>
+                        <a href="/Hayvan/Details1/25">Profilime bak</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">En iyi Dostlar</li>
+                    
+                </ul>
+            </div>
+        </div>
+        @{
+            var random = new Random();
+            var shuffledAnimals = hayvan.getAllData().OrderBy(x => random.Next()).Take(12).ToList();
+        }
+        <div class="row product__filter">
+            @foreach (var item in shuffledAnimals)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+
+                        <div class="product__item__pic set-bg" data-setbg="/img/hayvan/@item.Resim1">
+                            <ul class="product__hover">
+                                <li><a href="#"><img src="~/yeni/img/icon/heart.png" alt=""></a></li>
+                                <li><a href="#"><img src="~/yeni/img/icon/compare.png" alt=""> <span>Compare</span></a></li>
+                                <li><a href="#"><img src="~/yeni/img/icon/search.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>@item.Isim</h6>
+                            <a asp-controller="Hayvan" asp-action="Details1" asp-route-id="@item.HayvanId">Profile git</a>
+                            <div class="rating">
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="product__color__select">
+                                <label for="pc-4">
+                                    <input type="radio" id="pc-4">
+                                </label>
+                                <label class="active black" for="pc-5">
+                                    <input type="radio" id="pc-5">
+                                </label>
+                                <label class="grey" for="pc-6">
+                                    <input type="radio" id="pc-6">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/mixitup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+

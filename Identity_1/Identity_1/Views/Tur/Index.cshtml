@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MyClass.Tur>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Tür</h3>
+
+<p>
+    <a asp-action="Create">Yeni ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Isim)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isim)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TurId">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.TurId">Detay</a> |
+                <a asp-action="Delete" asp-route-id="@item.TurId">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

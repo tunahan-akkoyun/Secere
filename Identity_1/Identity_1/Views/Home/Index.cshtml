@@ -1,0 +1,136 @@
+﻿@model Identity_1.Models.HomeViewModel 
+
+@{
+    ViewBag.Title = "Hayvanlar"; 
+}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <input type="text" id="searchInput" placeholder="Hayvan Ara" class="form-control" />
+                        <br />
+                        <button id="searchButton" class="btn btn-primary">Ara</button>
+                    </div>
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Türler</a>
+                                </div>
+                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul id="turList" class="nice-scroll">
+                                                @foreach (var tur in Model.Turler)
+                                                {
+                                                    <li><a href="#" class="turLink" data-turid="@tur.TurId">@tur.Isim</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseTwo">Cinsler</a>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__brand">
+
+                                            <ul id="cinsList">
+                                                @Html.Partial("_CinsList", Model.Cinsler)
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="hayvanList" class="col-lg-9">
+                @Html.Partial("_HayvanList", Model.Hayvanlar)
+            </div>
+        </div>
+    </div>
+
+
+@* <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" id="searchInput" placeholder="Hayvan Ara" class="form-control" /> 
+            <br/>
+            <button id="searchButton" class="btn btn-primary">Ara</button>
+            <br />
+            <br />
+            <h3>Türler</h3>
+            <ul id="turList">
+                @foreach (var tur in Model.Turler)
+                {
+                    <li><a href="#" class="turLink" data-turid="@tur.TurId">@tur.Isim</a></li>
+                }
+            </ul>
+            <br />
+            <h3>Cinsler</h3>
+            <ul id="cinsList">
+                @Html.Partial("_CinsList", Model.Cinsler)
+            </ul>
+        </div>
+        <div class="col-md-9" id="hayvanList">
+            @Html.Partial("_HayvanList", Model.Hayvanlar)
+        </div>
+    </div>
+</div> *@
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchButton').click(function () {
+                var query = $('#searchInput').val();
+                $.ajax({
+                    url: '@Url.Action("Search", "Home")',
+                    data: { query: query },
+                    success: function (data) {
+                        $('#hayvanList').html(data);
+                    }
+                });
+            });
+
+            $('.turLink').click(function (e) {
+                e.preventDefault();
+                var turId = $(this).data('turid');
+                $.ajax({
+                    url: '@Url.Action("GetHayvanlarByTur", "Home")',
+                    data: { turId: turId },
+                    success: function (data) {
+                        $('#hayvanList').html(data);
+                    }
+                });
+
+                $.ajax({
+                    url: '@Url.Action("GetCinslerByTur", "Home")',
+                    data: { turId: turId },
+                    success: function (data) {
+                        $('#cinsList').html(data);
+                    }
+                });
+            });
+
+            $(document).on('click', '.cinsLink', function (e) {
+                e.preventDefault();
+                var cinsId = $(this).data('cinsid');
+                $.ajax({
+                    url: '@Url.Action("GetHayvanlarByCins", "Home")',
+                    data: { cinsId: cinsId },
+                    success: function (data) {
+                        $('#hayvanList').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

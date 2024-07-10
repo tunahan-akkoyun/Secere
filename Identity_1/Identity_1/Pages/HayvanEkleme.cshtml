@@ -1,0 +1,152 @@
+﻿@page
+@model Identity_1.Pages.HayvanEklemeModel
+
+
+@using Identity_1.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+}
+@inject MyData.Repository.Ihelper<MyClass.Hayvan> hayvan
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+@inject MyData.Repository.Ihelper<MyClass.Cins> cins
+
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Ekleme</h4>
+					<div class="breadcrumb__links">
+						<a href="/Hayvan/Index">Hayvanlarım</a>
+						<span>Ekleme</span>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form method="get" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label">Tur</label>
+                <br/>
+                <select name="id" class="form-control">
+                    @foreach (var item in tur.getAllData())
+                    {
+
+                        <option value="@item.TurId" name="id" class="form-control">@item.Isim</option>
+
+                    }
+
+                </select>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <input name="TurId" type="submit" value="Seç" class="btn btn-primary" />
+            </div>
+        </form>
+
+        <form asp-controller="Hayvan" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+
+                <input hidden name="TurId" value="@Model.İdTur" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Isim</label>
+                <input name="Isim" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+           
+            @if (SignInManager.IsSignedIn(User))
+            {
+                
+                var email = User.Identity?.Name;
+                var user = await UserManager.FindByEmailAsync(email);
+                var userId = user?.Id;
+
+                <div class="form-group">
+                    @* <label class="control-label">UserId</label> *@
+                    <input type="hidden" name="UserId" class="form-control" value="@userId" />
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label">Yas</label>
+                <input name="Yas" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cinsiyet</label>
+                <input name="Cinsiyet" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Cins</label>
+                <br />
+                <select name="CinsId" class="form-control">
+                    @foreach (var item in Model.MyList)
+                    {
+
+                        <option value="@item.CinsId" class="form-control">@item.Isim</option>
+                    }
+
+                </select>
+            </div>
+            <br />
+            <br />
+        
+            <div class="form-group">
+                <label class="control-label">DogumTarih</label>
+                <input type="date" id="DogumTarihi" name="DogumTarihi" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">OlumTarih</label>
+                <input type="date" id="OlumTarihi" name="OlumTarihi" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="Resim1">Resim1</label>
+                <input type="file" name="Resim1" id="Resim1" class="form-control" accept="image/*" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Resim2">Resim2</label>
+                <input type="file" name="Resim2" id="Resim2" class="form-control" accept="image/*" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Resim3">Resim3</label>
+                <input type="file" name="Resim3" id="Resim3" class="form-control" accept="image/*" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye geri dön</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+}
+
+

@@ -1,0 +1,66 @@
+﻿@model MyClass.Iliski
+
+
+<h2>Anne Ekle</h2>
+
+<form asp-controller="Iliski" asp-action="AnneCreate" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Iliski</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+           @*  @Html.Label("Hayvan1Id", "Hayvan ID", htmlAttributes: new { @class = "control-label col-md-2" }) *@
+            <div class="col-md-10">
+                <input hidden type="text" name="hayvan1Id" value="@ViewBag.HayvanId" class="form-control" readonly />
+                @Html.ValidationMessageFor(model => model.Hayvan1Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Hayvan2Id", "Dişi Hayvan Seçin", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("hayvan2Id", (SelectList)ViewBag.DisiHayvanlar, "Bir dişi hayvan seçin", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Hayvan2Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br/>
+        <br />
+
+        <div class="form-group">
+            @Html.Label("IliskiTuru", "İlişki Türü", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="iliskiTuru" value="Anne" class="form-control" readonly />
+                @Html.ValidationMessageFor(model => model.IliskiTuru, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Anneyi ekle" class="btn btn-default" />
+            </div>
+          
+        </div>
+    </div>
+</form>
+@* 
+    <form asp-controller="Iliski" asp-action="BabaCreate">
+        <input type="hidden" name="hayvanId" value="@Model.Hayvan1.HayvanId" />
+        <input type="hidden" name="cinsId" value="@Model.Hayvan1.CinsId" />
+        <input type="submit" value="geç" class="btn btn-default" />
+    </form>
+ *@
+
+<div>
+    @Html.ActionLink("İliki seç", "iliskiSec")
+</div>
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

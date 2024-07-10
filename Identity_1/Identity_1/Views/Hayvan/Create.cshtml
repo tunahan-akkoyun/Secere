@@ -1,0 +1,99 @@
+﻿@model MyClass.Hayvan
+
+@{
+    ViewData["Title"] = "Create";
+}
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+@inject MyData.Repository.Ihelper<MyClass.Cins> cins
+<h1>Create</h1>
+
+<h4>Hayvan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="Create2" name="id" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="TurId" class="control-label"></label>
+                <select asp-for="TurId" name="id" class="form-control">
+                    @foreach (var item in tur.getAllData())
+                    {
+
+                        <option value="@item.TurId" name="id"  class="form-control">@item.Isim</option>
+
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+       </form>
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Isim" class="control-label"></label>
+                <input asp-for="Isim" class="form-control" />
+                <span asp-validation-for="Isim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yas" class="control-label"></label>
+                <input asp-for="Yas" class="form-control" />
+                <span asp-validation-for="Yas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cinsiyet" class="control-label"></label>
+                <input asp-for="Cinsiyet" class="form-control" />
+                <span asp-validation-for="Cinsiyet" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label  class="control-label">Cins</label>
+                <select  class="form-control">
+                    @foreach (var item in cins.getAllData())
+                    {
+                        <option value="@item.CinsId" class="form-control">@item.Isim</option>
+                    }
+
+                </select>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="userId" class="control-label"></label>
+                <select asp-for="userId" class ="form-control" asp-items="ViewBag.SahipId"></select>
+            </div> *@
+            
+            <div class="form-group">
+                <label asp-for="Resim1" class="control-label"></label>
+                <input asp-for="Resim1" class="form-control" />
+                <span asp-validation-for="Resim1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim2" class="control-label"></label>
+                <input asp-for="Resim2" class="form-control" />
+                <span asp-validation-for="Resim2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim3" class="control-label"></label>
+                <input asp-for="Resim3" class="form-control" />
+                <span asp-validation-for="Resim3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

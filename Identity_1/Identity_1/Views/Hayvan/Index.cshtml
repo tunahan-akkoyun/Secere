@@ -1,0 +1,125 @@
+﻿@using Identity_1.Models
+@model IEnumerable<MyClass.Hayvan>
+
+@{
+	ViewData["Title"] = "Index";
+	// Layout = "_Layout.cshtml";
+}
+@inject MyData.Repository.Ihelper<MyClass.Hayvan> hayvan
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+@inject MyData.Repository.Ihelper<MyClass.Cins> cins
+@using Identity_1.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<section class="breadcrumb-option">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="breadcrumb__text">
+					<h4>Hayvanlarım</h4>
+					<div class="breadcrumb__links">
+						<a href="/Identity/Account/Manage">Sayfam</a>
+						<span>Hayvanlarım</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<hr />
+
+<p>
+	<a asp-page="/HayvanEkleme">Yeni ekle</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Isim)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Tur)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Cins)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Yas)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Cinsiyet)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Resim1)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Resim2)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Resim3)
+			</th>
+
+			
+
+			
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (SignInManager.IsSignedIn(User))
+		{
+
+			var email = User.Identity?.Name;
+			var user = await UserManager.FindByEmailAsync(email);
+			var userId = user?.Id;
+
+			@foreach (var item in Model)
+			{
+				if (userId == item.UserId)
+				{
+
+
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Isim)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Tur.Isim)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Cins.Isim)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Yas)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Cinsiyet)
+						</td>
+						<td>
+							<img src="~/img/hayvan/@item.Resim1" width="20px" height="20px" style="border-radius=50%" class="card-img-top" alt="Hayvan resmi" />
+						</td>
+						<td>
+							<img src="~/img/hayvan/@item.Resim2" width="20px" height="20px" style="border-radius=50%" class="card-img-top" alt="Hayvan resmi" />
+						</td>
+						<td>
+							<img src="~/img/hayvan/@item.Resim2" width="20px" height="20px" style="border-radius=50%" class="card-img-top" alt="Hayvan resmi" />
+						</td>
+
+						
+						
+						 <td>
+							<a asp-controller="Hayvan" asp-action="Edit" asp-route-id="@item.HayvanId">Edit</a> |
+							<a asp-controller="Hayvan" asp-action="Details" asp-route-id="@item.HayvanId">Detay</a> |
+							<a asp-controller="Hayvan" asp-action="Delete" asp-route-id="@item.HayvanId">Sil</a>
+
+						</td> 
+						
+					</tr>
+				}
+			} 
+		}
+
+	</tbody>
+</table>

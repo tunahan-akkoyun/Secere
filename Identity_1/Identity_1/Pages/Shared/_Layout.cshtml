@@ -1,0 +1,199 @@
+﻿@* @inject MyData.Repository.Ihelper<MyClass.User> User *@
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Secere</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/yeni/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/yeni/css/style.css" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI CDN for DatePicker (if needed) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="~/yeni/img/icon/search.png" alt=""></a>
+            <a href="#"><img src="~/yeni/img/icon/heart.png" alt=""></a>
+            <a href="#"><img src="~/yeni/img/icon/cart.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Free shipping, 30-day return or refund guarantee.</p>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="header__top__left">
+                            <p style="font-size: 20px; padding: 10px 0; ">ŞECERE | Köken herşeydir...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <partial name="_LoginPartial" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="/Index"><img src="~/img/logo.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="/Index">Anasayfa</a></li>
+                            <li><a href="/Home/Index">Hayvanlar</a></li>
+                            <li><a href="/Home/Hakkimizda">Hakkımızda</a></li>
+                            <li><a href="/Home/Iletisim">İletişim</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <!-- Hero Section Begin -->
+    <!-- Banner Section End -->
+    <!-- Product Section Begin -->
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="~/img/footer-logo.jpg" alt=""></a>
+                        </div>
+                        <p>Müşteri, tasarımı da içeren benzersiz iş modelimizin merkezinde yer alır.</p>
+                        <a href="#"><img src="~/yeni/img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Hayvan</h6>
+                        <ul>
+                            <li><a href="#">Giyim Mağazası</a></li>
+                            <li><a href="#">Trend Ayakkabılar</a></li>
+                            <li><a href="#">Aksesuarlar</a></li>
+                            <li><a href="#">İndirim</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Kullanıcılar</h6>
+                        <ul>
+                            <li><a href="#">İletişim</a></li>
+                            <li><a href="#">Ödeme Yöntemleri</a></li>
+                            <li><a href="#">Teslimat</a></li>
+                            <li><a href="#">İade ve Değişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Bülten</h6>
+                        <div class="footer__newslatter">
+                            <p>Yeni gelenler, lookbook'lar, indirimler ve promosyonlardan ilk siz haberdar olun!</p>
+                            <form action="#">
+                                <input type="text" placeholder="E-postanız">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Colorlib bağlantısı kaldırılamaz. Şablon CC BY 3.0 lisansı altındadır. -->
+                        <p>
+                            Telif Hakkı ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2024
+                            Tüm hakları saklıdır 
+                        </p>
+                        <!-- Colorlib bağlantısı kaldırılamaz. Şablon CC BY 3.0 lisansı altındadır. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Bölümü Sonu -->
+    <!-- Arama Başlangıcı -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Burada ara.....">
+            </form>
+        </div>
+    </div>
+
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/yeni/js/jquery-3.3.1.min.js"></script>
+    <script src="~/yeni/js/bootstrap.min.js"></script>
+    <script src="~/yeni/js/jquery.nice-select.min.js"></script>
+    <script src="~/yeni/js/jquery.nicescroll.min.js"></script>
+    <script src="~/yeni/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/yeni/js/jquery.countdown.min.js"></script>
+    <script src="~/yeni/js/jquery.slicknav.js"></script>
+    <script src="~/yeni/js/mixitup.min.js"></script>
+    <script src="~/yeni/js/owl.carousel.min.js"></script>
+    <script src="~/yeni/js/main.js"></script>
+
+</body>
+
+</html>
+@await RenderSectionAsync("Scripts", required: false)

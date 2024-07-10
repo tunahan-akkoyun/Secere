@@ -1,0 +1,100 @@
+﻿
+@model MyClass.Hayvan
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@{
+}
+@inject MyData.Repository.Ihelper<MyClass.Hayvan> hayvan
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+@inject MyData.Repository.Ihelper<MyClass.Cins> cins
+
+<h1>Edit</h1>
+
+<h4>Hayvan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form  asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HayvanId" />
+            <input type="hidden" asp-for="UserId"  />
+            <div class="form-group">
+                <label asp-for="Isim" class="control-label"></label>
+                <input asp-for="Isim" class="form-control" />
+                <span asp-validation-for="Isim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yas" class="control-label"></label>
+                <input asp-for="Yas" class="form-control" />
+                <span asp-validation-for="Yas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cinsiyet" class="control-label"></label>
+                <input asp-for="Cinsiyet" class="form-control" />
+                <span asp-validation-for="Cinsiyet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TurId" class="control-label">Tur</label> <br/> 
+                <select asp-for="TurId" class="form-control" asp-items="@(new SelectList(ViewData["Turler"] as IEnumerable<MyClass.Tur>, "TurId", "Isim"))">
+                    <option value="">Seçiniz</option>
+                </select>
+                <span asp-validation-for="TurId" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="CinsId" class="control-label">Cins</label>
+                <br />
+                <select asp-for="CinsId" class="form-control" asp-items="@(new SelectList(ViewData["Cinsler"] as IEnumerable<MyClass.Cins>, "CinsId", "Isim"))">
+                    <option value="">Seçiniz</option>
+                </select>
+                <span asp-validation-for="CinsId" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label asp-for="DogumTarihi" class="control-label"></label>
+                <input asp-for="DogumTarihi" type="date" class="form-control" />
+                <span asp-validation-for="DogumTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OlumTarihi" class="control-label"></label>
+                <input asp-for="OlumTarihi" type="date" class="form-control" />
+                <span asp-validation-for="OlumTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim1" class="control-label"></label>
+                <input type="file" asp-for="Resim1" class="form-control" accept="image/*" />
+                <span asp-validation-for="Resim1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim2" class="control-label"></label>
+                <input type="file" asp-for="Resim2" class="form-control" accept="image/*" />
+                <span asp-validation-for="Resim2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resim3" class="control-label"></label>
+                <input type="file" asp-for="Resim3" class="form-control" accept="image/*" />
+                <span asp-validation-for="Resim3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+       

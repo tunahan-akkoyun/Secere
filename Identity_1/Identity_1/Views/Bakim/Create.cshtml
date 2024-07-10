@@ -1,0 +1,54 @@
+﻿@model MyClass.Bakim
+
+<h3>@ViewData["HayvanIsim"]</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        
+          
+            <div class="form-group">
+                @* <label asp-for="HayvanID" class="control-label">@ViewData["HayvanIsim"]</label> *@
+                <input hidden asp-for="HayvanID" class="form-control" value=@ViewData["HayvanId"] />
+                @* <span asp-validation-for="HayvanID" class="text-danger"></span> *@
+            </div>
+            <div class="form-group">
+                <label asp-for="BakimTipi" class="control-label"></label>
+                <input asp-for="BakimTipi" class="form-control" />
+                <span asp-validation-for="BakimTipi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BakimTarihi" class="control-label"></label>
+                <input type="date" asp-for="BakimTarihi" class="form-control" />
+                <span asp-validation-for="BakimTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SonrakiBakimTarihi" class="control-label"></label>
+                <input type="date" asp-for="SonrakiBakimTarihi" class="form-control" />
+                <span asp-validation-for="SonrakiBakimTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notlar" class="control-label"></label>
+                <input asp-for="Notlar" class="form-control" />
+                <span asp-validation-for="Notlar" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

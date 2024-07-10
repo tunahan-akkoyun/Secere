@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MyClass.Cins>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+
+<h3>Cinsler</h3>
+
+<p>
+    <a asp-action="Create">Yeni Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Isim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tur)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isim)
+            </td>
+            <td>
+                    @foreach (var item1 in tur.getAllData())
+                    {
+                        if (item1.TurId == item.TurId)
+                        {
+                            @item1.Isim
+
+                        }
+                    }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CinsId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.CinsId">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

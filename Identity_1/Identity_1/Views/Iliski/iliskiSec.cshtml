@@ -1,0 +1,26 @@
+﻿@model MyClass.Iliski
+
+<div style="text-align: center; margin-top: 50px;">
+    <h4 style="font-size: 24px; margin-bottom: 10px;">İlişki Seç</h4>
+    <hr style="width: 50%; margin: 0 auto; border: 1px solid #000; margin-bottom: 20px;" />
+    <div style="display: flex; justify-content: center; gap: 10px;">
+        <form asp-controller="Iliski" asp-action="AnneCreate" method="get" style="margin: 10px 0;">
+            <input type="hidden" name="hayvanId" value=@ViewData["id"] />
+            <input type="submit" value="Anne Ekle" style="padding: 10px 20px; font-size: 16px; color: #000; background-color: #fff; border: 2px solid #000; cursor: pointer; transition: all 0.3s ease;"
+                   onmouseover="this.style.backgroundColor='#000'; this.style.color='#fff';"
+                   onmouseout="this.style.backgroundColor='#fff'; this.style.color='#000';" />
+        </form>
+        <form asp-controller="Iliski" asp-action="BabaCreate" method="get" style="margin: 10px 0;">
+            <input type="hidden" name="hayvanId" value=@ViewData["id"] />
+            <input type="submit" value="Baba Ekle" style="padding: 10px 20px; font-size: 16px; color: #000; background-color: #fff; border: 2px solid #000; cursor: pointer; transition: all 0.3s ease;"
+                   onmouseover="this.style.backgroundColor='#000'; this.style.color='#fff';"
+                   onmouseout="this.style.backgroundColor='#fff'; this.style.color='#000';" />
+        </form>
+        <form asp-controller="Hayvan" asp-action="Index" style="margin: 10px 0;">
+            <input type="submit" value="Hayvanlarım" style="padding: 10px 20px; font-size: 16px; color: #000; background-color: #fff; border: 2px solid #000; cursor: pointer; transition: all 0.3s ease;"
+                   onmouseover="this.style.backgroundColor='#000'; this.style.color='#fff';"
+                   onmouseout="this.style.backgroundColor='#fff'; this.style.color='#000';" />
+        </form>
+    </div>
+</div>
+

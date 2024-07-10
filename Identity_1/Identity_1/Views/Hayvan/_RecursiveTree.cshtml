@@ -1,0 +1,59 @@
+﻿@using MyClass
+@using Identity_1.Models
+@using Identity_1.MyController
+@model Identity_1.Models.RecursiveTreeViewModel
+
+
+
+
+@if (Model.Hayvan != null && Model.HayvanController != null)
+{
+    <div class="tree">
+        <ul>
+            <li>
+                <a href="@Url.Action("Details", "Hayvan", new { id = Model.Hayvan.HayvanId })" style="border: 1px ; display: inline-block; padding: 10px;">
+                    <img src="~/img/hayvan/@Model.Hayvan.Resim1" width="30px" height="30px" style="border-radius:10%" class="card-img-top" alt="Hayvan resmi" />
+                    <h6>@Model.Hayvan.Isim</h6>
+                </a>
+                <ul>
+                    @if (Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Anne) != null ||
+                   Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Baba) != null)
+                    {
+                        @if (Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Anne) != null)
+                        {
+                            var anne = Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Anne);
+                            <li>
+                                <div style="text-align: center;">
+                                    <div>Anne</div>
+                                    @Html.Partial("_RecursiveTree", new RecursiveTreeViewModel { Hayvan = anne, HayvanController = Model.HayvanController })
+                                </div>
+                            </li>
+                        }
+                        @if (Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Baba) != null)
+                        {
+                            var baba = Model.HayvanController.GetEbeveyn(Model.Hayvan.HayvanId, IliskiTur.Baba);
+                            <li>
+                                <div style="text-align: center;">
+                                    <div>Baba</div>
+                                    @Html.Partial("_RecursiveTree", new RecursiveTreeViewModel { Hayvan = baba, HayvanController = Model.HayvanController })
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+} 
+
+
+
+
+
+
+
+
+
+
+
+

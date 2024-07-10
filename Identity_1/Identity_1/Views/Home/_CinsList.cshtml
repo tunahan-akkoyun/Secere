@@ -1,0 +1,6 @@
+﻿@model IEnumerable<MyClass.Cins>
+
+@foreach (var cins in Model)
+{
+    <li><a href="#" class="cinsLink" data-cinsid="@cins.CinsId">@cins.Isim</a></li>
+}

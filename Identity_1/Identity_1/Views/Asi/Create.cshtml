@@ -1,0 +1,56 @@
+﻿@model MyClass.Asi
+
+
+
+<h3>@ViewData["HayvanIsim"]</h3>
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            
+            <div class="form-group">
+                
+                <input hidden asp-for="HayvanID" class="form-control" value=@ViewData["HayvanId"] />
+              
+            </div>
+            <div class="form-group">
+                <label asp-for="AsiAdi" class="control-label"></label>
+                <input asp-for="AsiAdi" class="form-control" />
+                <span asp-validation-for="AsiAdi" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="AsiTarihi" class="control-label"></label>
+                <input type="date" asp-for="AsiTarihi" class="form-control" />
+                <span asp-validation-for="AsiTarihi" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="SonrakiAsiTarihi" class="control-label"></label>
+                <input type="date" asp-for="SonrakiAsiTarihi" class="form-control" />
+                <span asp-validation-for="SonrakiAsiTarihi" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Notlar" class="control-label"></label>
+                <input asp-for="Notlar" class="form-control" />
+                <span asp-validation-for="Notlar" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

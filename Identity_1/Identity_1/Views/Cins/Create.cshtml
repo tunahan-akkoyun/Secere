@@ -1,0 +1,44 @@
+﻿@model MyClass.Cins
+
+@{
+    ViewData["Title"] = "Create";
+}
+@inject MyData.Repository.Ihelper<MyClass.Tur> tur
+
+<h4>Cins Ekle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Isim" class="control-label">İsim</label>
+                <input asp-for="Isim" class="form-control" />
+                <span asp-validation-for="Isim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TurId" class="control-label">Tür seç</label>
+                <select asp-for="TurId" class="form-control">
+                    @foreach (var item in tur.getAllData())
+                    {
+
+                        <option value="@item.TurId" class="form-control">@item.Isim</option>
+
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listeye dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

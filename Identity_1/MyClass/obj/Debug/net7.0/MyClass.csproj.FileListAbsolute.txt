@@ -1,0 +1,14 @@
+C:\Users\tunah\Desktop\Identity_1\MyClass\bin\Debug\net7.0\MyClass.deps.json
+C:\Users\tunah\Desktop\Identity_1\MyClass\bin\Debug\net7.0\MyClass.runtimeconfig.json
+C:\Users\tunah\Desktop\Identity_1\MyClass\bin\Debug\net7.0\MyClass.dll
+C:\Users\tunah\Desktop\Identity_1\MyClass\bin\Debug\net7.0\MyClass.pdb
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.csproj.AssemblyReference.cache
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.AssemblyInfoInputs.cache
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.AssemblyInfo.cs
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.csproj.CoreCompileInputs.cache
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.dll
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\refint\MyClass.dll
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.pdb
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\MyClass.genruntimeconfig.cache
+C:\Users\tunah\Desktop\Identity_1\MyClass\obj\Debug\net7.0\ref\MyClass.dll
